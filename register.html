@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 
 <head>
@@ -36,7 +38,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action="signup.php" method="POST">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="firstname" class="form-control form-control-user" id="exampleFirstName"
@@ -65,12 +67,12 @@
                                     <!-- creamos el espacio para telefono pero con un salto mas abajo -->
                                     <div class="col-sm-6 mt-3">
                                         <input type="text" name="phone" class="form-control form-control-user"
-                                            id="exampleInputPhone" placeholder="Phone Number" >
+                                            id="exampleInputPhone" placeholder="Phone Number" required style="">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register Account
-                                </a>
+                                </button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
