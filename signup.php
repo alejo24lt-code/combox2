@@ -24,6 +24,24 @@
         echo "<script>alert('El correo electrónico ya está registrado'); window.history.back();</script>";
         exit;
     }
+    //validar si el telefono ya esta registrado en la base de datos local y en la base de datos supabase, si es asi imprimimos un mensaje de error y salimos del script
+    if (!empty($m_phone)) {
+        $sql_validate_phone_local = "SELECT * FROM users WHERE mobile_phone = '$m_phone'";
+        $res_validate_phone_local = pg_query($local_conn, $sql_validate_phone_local);
+        if (pg_num_rows($res_validate_phone_local) > 0) {
+            echo "<script>alert('El número de teléfono ya está registrado en la base de datos local'); window.history.back();</script>";
+            exit;
+        }
+
+        $sql_validate_phone_supa = "SELECT * FROM users WHERE mobile_phone = '$m_phone'";
+        $res_validate_phone_supa = pg_query($supa_conn, $sql_validate_phone_supa);
+        if (pg_num_rows($res_validate_phone_supa) > 0) {
+            echo "<script>alert('El número de teléfono ya está registrado en la base de datos Supabase'); window.history.back();</script>";
+            exit;
+        }
+    }
+    
+    
     //prepare query es basicamente preparar la consulta para insertar los datos en la base de datos, es como un borrador de la consulta, luego se ejecuta con pg_query_params
     $sql = "INSERT INTO users (
         firstname, lastname, mobile_phone, email, password) 
@@ -36,7 +54,7 @@
 
     // aqui verificamos si la consulta se ejecuto correctamente en la base de datos local y en la base de datos supabase, si es asi imprimimos un mensaje de exito, si no imprimimos un mensaje de error
     
-if ($local_res) {
+if ($local_res) {   
     echo "User has been created successfully into local database<br>";
 } else {
     echo "User has not been created in local database<br>";
