@@ -16,7 +16,7 @@
 }
 
     //vamos a encriptar la contraseña
-    $pass_enc = md5($p_assword);
+    $pass_enc = password_hash($p_assword, PASSWORD_DEFAULT);
 
     $sql_validate_email = "SELECT * FROM users WHERE email = '$e_mail'";
     $res_validate_email = pg_query($local_conn, $sql_validate_email);
