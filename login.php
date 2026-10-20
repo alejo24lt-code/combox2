@@ -11,7 +11,7 @@ if (empty($_POST['email']) || empty($_POST['password'])) {
 }
 
 // Conectar con la base de datos
-require('config/database.php');
+require('config/supabase.php');
 
 // Recibir los datos del formulario
 $email = $_POST['email'];
