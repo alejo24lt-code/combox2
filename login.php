@@ -12,10 +12,10 @@ if (empty($_POST['email']) || empty($_POST['password'])) {
 }
 
 session_start();
-echo "Estado de sesión: " . session_status();
+//echo "Estado de sesión: " . session_status();
 
-echo "<pre>";
-print_r($_SESSION);
+//echo "<pre>";
+//print_r($_SESSION);
 echo "</pre>";
 // Conectar con Supabase
 require('config/supabase.php');
@@ -25,7 +25,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 // Buscar el usuario// Buscar el usuario por su correo
-$sql = "SELECT id, firstname, lastname, email, password FROM users WHERE email = $1";
+$sql = "SELECT id, firstname, lastname, email, password, photo_url FROM users WHERE email = $1";
 $result = pg_query_params($supa_conn, $sql, [$email]);
 
 if ($result && pg_num_rows($result) === 1) {

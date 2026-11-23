@@ -39,17 +39,12 @@ $supa_conn = pg_connect("
 
 
 // VERIFICAR CONEXIONES
-
 if (!$local_conn) {
     die("Local database connection failed");
-} else {
-    echo "Local Connected success<br>";
 }
 
 if (!$supa_conn) {
     die("Supabase connection failed");
-} else {
-    echo "Supabase Connected success<br>";
 }
 
 ?>
