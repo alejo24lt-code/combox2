@@ -18,7 +18,7 @@ session_start();
 //print_r($_SESSION);
 echo "</pre>";
 // Conectar con Supabase
-require('config/supabase.php');
+require('config/database.php');
 
 // Recibir los datos del formulario
 $email = $_POST['email'];

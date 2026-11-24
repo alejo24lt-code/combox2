@@ -104,10 +104,8 @@ if (
         CURLOPT_POSTFIELDS => $contenido,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => [
-            'Authorization: Bearer ' . SUPABASE_SECRET_KEY,
-            'apikey: ' . SUPABASE_SECRET_KEY,
+            'apikey: ' . SUPABASE_PUBLISHABLE_KEY,
             'Content-Type: ' . $mime,
-            'x-upsert: true'
         ],
         CURLOPT_CONNECTTIMEOUT => 15,
         CURLOPT_TIMEOUT => 60

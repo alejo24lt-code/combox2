@@ -3,43 +3,24 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Cargar configuración según el sistema operativo
-if (PHP_OS_FAMILY === 'Windows') {
-    $required_env = [
-        'SUPABASE_DB_HOST',
-        'SUPABASE_DB_PORT',
-        'SUPABASE_DB_USER',
-        'SUPABASE_DB_NAME',
-        'SUPABASE_DB_PASSWORD',
-        'SUPABASE_URL',
-        'SUPABASE_SECRET_KEY',
-        'SUPABASE_BUCKET'
-    ];
+define('SUPABASE_DB_HOST', 'aws-0-us-west-2.pooler.supabase.com');
+define('SUPABASE_DB_PORT', '6543');
+define('SUPABASE_DB_USER', 'postgres.rzybdadcqjmlonauahdr');
+define('SUPABASE_DB_NAME', 'postgres');
+define('SUPABASE_DB_PASSWORD', 'unicesmag@@');
+define('SUPABASE_URL', 'https://rzybdadcqjmlonauahdr.supabase.co');
+define('SUPABASE_PUBLISHABLE_KEY', 'sb_publishable__KOXhXi02vNB7b5lKB59iQ_A3CRwclQ');
+define('SUPABASE_BUCKET', 'profile-photos');
 
-    foreach ($required_env as $name) {
-        $value = getenv($name);
-        if ($value === false || $value === '') {
-            die("Falta configurar la variable de entorno: " . $name);
-        }
-        define($name, $value);
-    }
-} else {
-    require_once('/etc/combox-config.php');
-}
-
-// Conexión a Supabase
-$supa_conn = pg_connect("
-    host=" . SUPABASE_DB_HOST . "
-    port=" . SUPABASE_DB_PORT . "
-    dbname=" . SUPABASE_DB_NAME . "
-    user=" . SUPABASE_DB_USER . "
-    password=" . SUPABASE_DB_PASSWORD . "
-    sslmode=require
-");
+$supa_conn = pg_connect(
+    "host=" . SUPABASE_DB_HOST .
+    " port=" . SUPABASE_DB_PORT .
+    " dbname=" . SUPABASE_DB_NAME .
+    " user=" . SUPABASE_DB_USER .
+    " password=" . SUPABASE_DB_PASSWORD .
+    " sslmode=require"
+);
 
 if (!$supa_conn) {
-    error_log("Error de conexión a Supabase: " . pg_last_error());
     die("No se pudo conectar con Supabase.");
 }
-
-?>
