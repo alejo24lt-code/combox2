@@ -3,14 +3,29 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Detectar sistema operativo
+// Cargar configuración según el sistema operativo
 if (PHP_OS_FAMILY === 'Windows') {
-    $config_path = 'C:/xampp1/private/combox-config.php';
-} else {
-    $config_path = '/etc/combox-config.php';
-}
+    $required_env = [
+        'SUPABASE_DB_HOST',
+        'SUPABASE_DB_PORT',
+        'SUPABASE_DB_USER',
+        'SUPABASE_DB_NAME',
+        'SUPABASE_DB_PASSWORD',
+        'SUPABASE_URL',
+        'SUPABASE_SECRET_KEY',
+        'SUPABASE_BUCKET'
+    ];
 
-require_once($config_path);
+    foreach ($required_env as $name) {
+        $value = getenv($name);
+        if ($value === false || $value === '') {
+            die("Falta configurar la variable de entorno: " . $name);
+        }
+        define($name, $value);
+    }
+} else {
+    require_once('/etc/combox-config.php');
+}
 
 // Conexión a Supabase
 $supa_conn = pg_connect("
