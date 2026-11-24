@@ -5,9 +5,9 @@ ini_set('display_errors', 1);
 
 // Detectar sistema operativo
 if (PHP_OS_FAMILY === 'Windows') {
-    $config_path = 'C:/xampp1/private/combox-database.php';
+    $config_path = 'C:/xampp1/private/combox-config.php';
 } else {
-    $config_path = '/etc/combox-database.php';
+    $config_path = '/etc/combox-config.php';
 }
 
 require_once($config_path);
