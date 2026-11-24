@@ -3,10 +3,16 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Cargar configuración privada
-require_once('/etc/combox-database.php');
+// Detectar sistema operativo
+if (PHP_OS_FAMILY === 'Windows') {
+    $config_path = 'C:/xampp1/private/combox-database.php';
+} else {
+    $config_path = '/etc/combox-database.php';
+}
 
-// Conexión única a Supabase
+require_once($config_path);
+
+// Conexión a Supabase
 $supa_conn = pg_connect("
     host=" . SUPABASE_DB_HOST . "
     port=" . SUPABASE_DB_PORT . "
@@ -20,6 +26,5 @@ if (!$supa_conn) {
     error_log("Error de conexión a Supabase: " . pg_last_error());
     die("No se pudo conectar con Supabase.");
 }
-
 
 ?>
