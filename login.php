@@ -54,6 +54,7 @@ if ($result && pg_num_rows($result) === 1) {
     $_SESSION['email'] = $user['email'];
     $_SESSION['firstname'] = trim($user['firstname']);
     $_SESSION['lastname'] = trim($user['lastname']);
+    $_SESSION['photo_url'] = $user['photo_url'] ?? '';
 
 
     session_write_close();

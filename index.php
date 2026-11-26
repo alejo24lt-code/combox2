@@ -356,7 +356,9 @@ if (!isset($_SESSION['user_id'])) {
 
 
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="<?php echo !empty($_SESSION['photo_url']) ? htmlspecialchars($_SESSION['photo_url'], ENT_QUOTES, 'UTF-8') : 'img/undraw_profile.svg'; ?>"
+                                    alt="Foto de perfil"
+                                    style="object-fit: cover;">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -399,22 +401,28 @@ if (!isset($_SESSION['user_id'])) {
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- List Users Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <a href="list_users.php" class="text-decoration-none d-block h-100"
+                               aria-label="Listar usuarios">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Listar usuarios
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    Consultar usuarios registrados
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
